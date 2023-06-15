@@ -17,6 +17,7 @@ describe('Register Use Case', () => {
 
     expect(user.id).toEqual(expect.any(String))
   })
+
   it('should hash user password upon registration', async () => {
     const usersRepository = new InMemoryUserRepository()
     const registerUseCase = new RegisterUseCase(usersRepository)
@@ -44,7 +45,7 @@ describe('Register Use Case', () => {
       password: '123456',
     })
 
-    expect(() =>
+    await expect(() =>
       registerUseCase.execute({
         name: 'lerdo',
         email,
