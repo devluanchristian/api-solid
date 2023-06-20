@@ -1,15 +1,19 @@
-import { expect, describe, it } from 'vitest'
+import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUserRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { AuthenticateUseCase } from './authenticate'
 import { hash } from 'bcryptjs'
 import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
+let usersRepository: InMemoryUserRepository
+let authenticateUseCase: AuthenticateUseCase
+
 describe('Autheticate Use Case', () => {
+  beforeEach(() => {
+    usersRepository = new InMemoryUserRepository()
+    authenticateUseCase = new AuthenticateUseCase(usersRepository)
+  })
   // deve ser capaz se autenticar
   it('should be able to authenticate', async () => {
-    const usersRepository = new InMemoryUserRepository()
-    const authenticateUseCase = new AuthenticateUseCase(usersRepository)
-
     await usersRepository.create({
       name: 'lerdo',
       email: 'prisma@prisma.com',
@@ -26,8 +30,6 @@ describe('Autheticate Use Case', () => {
 
   // não deve ser capaz de autenticar com e-mail errado
   it('should not be able to authenticate with wrong email', async () => {
-    const usersRepository = new InMemoryUserRepository()
-    const authenticateUseCase = new AuthenticateUseCase(usersRepository)
     expect(() =>
       authenticateUseCase.execute({
         email: 'prisma@prisma.com',
@@ -38,9 +40,6 @@ describe('Autheticate Use Case', () => {
 
   // não deve ser capaz de autenticar com a senha errada
   it('should not be able to authenticate with wrong password', async () => {
-    const usersRepository = new InMemoryUserRepository()
-    const authenticateUseCase = new AuthenticateUseCase(usersRepository)
-
     await usersRepository.create({
       name: 'lerdo',
       email: 'prisma@prisma.com',
