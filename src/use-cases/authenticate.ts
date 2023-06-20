@@ -1,5 +1,5 @@
-import { IUsersRepository } from '@/repositories/users.repository'
-import { InvalidCredentialsErros } from './errors/invalid-credentials-error'
+import { IUsersRepository } from '@/repositories/@type-users.repository'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 import { compare } from 'bcryptjs'
 import { User } from '@prisma/client'
 
@@ -19,14 +19,15 @@ export class AuthenticateUseCase {
     password,
   }: IAuthenticateUseCaseRequest): Promise<IAuthenticateUseCaseResponse> {
     const user = await this.usersRepository.findByEmail(email)
+
     if (!user) {
-      throw new InvalidCredentialsErros()
+      throw new InvalidCredentialsError()
     }
     // AsSenhasBatem
     const doesPasswordMatches = await compare(password, user.password_hash)
 
     if (!doesPasswordMatches) {
-      throw new InvalidCredentialsErros()
+      throw new InvalidCredentialsError()
     }
     return {
       user,
