@@ -30,7 +30,7 @@ describe('Autheticate Use Case', () => {
 
   // não deve ser capaz de autenticar com e-mail errado
   it('should not be able to authenticate with wrong email', async () => {
-    expect(() =>
+    await expect(() =>
       authenticateUseCase.execute({
         email: 'prisma@prisma.com',
         password: '123456',
@@ -46,7 +46,7 @@ describe('Autheticate Use Case', () => {
       password_hash: await hash('123456', 6),
     })
 
-    expect(() =>
+    await expect(() =>
       authenticateUseCase.execute({
         email: 'prisma@prisma.com',
         password: '1234516',

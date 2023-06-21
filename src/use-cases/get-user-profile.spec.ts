@@ -32,7 +32,7 @@ describe('Get User Profile Use Case', () => {
 
   // não deve ser capaz de obter o perfil do usuário com id errado
   it('should not be able to get user profile with wrong id', async () => {
-    expect(() =>
+    await expect(() =>
       getUserProfileUseCase.execute({
         userId: 'non-existing-id',
       }),
