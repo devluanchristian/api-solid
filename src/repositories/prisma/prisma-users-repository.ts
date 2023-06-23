@@ -3,7 +3,7 @@ import { Prisma, User } from '@prisma/client'
 import { IUsersRepository } from '../@type-users.repository'
 
 export class PrismaUsersRepository implements IUsersRepository {
-  findById(id: string): Promise<User> | null {
+  async findById(id: string): Promise<User | null> {
     throw new Error('Method not implemented.')
   }
 
