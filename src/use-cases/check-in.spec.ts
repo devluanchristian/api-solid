@@ -32,14 +32,6 @@ describe('Check-in Use Case', () => {
   })
   // Deve ser capaz de realizar o check-in.
   it('should be able to check in', async () => {
-    gymsRepository.items.push({
-      id: 'gym-01',
-      title: 'BH sport Fitness',
-      description: 'Academia dos fortes',
-      phone: '32112312',
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
-    })
     const { checkIn } = await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
