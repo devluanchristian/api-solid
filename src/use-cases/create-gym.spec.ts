@@ -6,13 +6,13 @@ let gymRepository: InMemoryGymRepository
 let sut: CreateGymUseCase
 
 // Caso de uso de Criação de Academias
-describe('Register Use Case', () => {
+describe('Create gym Use Case', () => {
   beforeEach(() => {
     gymRepository = new InMemoryGymRepository()
     sut = new CreateGymUseCase(gymRepository)
   })
-  // deve ser criar uma academia
-  it('should be able to register', async () => {
+  // deve ser possivel criar uma academia
+  it('should be possible to create an gym', async () => {
     const { gym } = await sut.execute({
       title: 'Bh sport fitt',
       description: null,
