@@ -6,7 +6,6 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error'
 let checkInsRepository: InMemoryCheckInsRepository
 let sut: ValidateCheckInUseCase
 
-// Caso de uso de Check ins
 describe('Validate Use Case', () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
