@@ -22,10 +22,10 @@ describe('Get User Metrics Use Case', () => {
       gym_id: 'gym-02',
       user_id: 'user-01',
     })
-    const { checkinsCount } = await sut.execute({
+    const { checkInsCount } = await sut.execute({
       userId: 'user-01',
     })
 
-    expect(checkinsCount).toEqual(2)
+    expect(checkInsCount).toEqual(2)
   })
 })
