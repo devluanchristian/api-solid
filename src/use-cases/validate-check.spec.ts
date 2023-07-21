@@ -7,7 +7,7 @@ let checkInsRepository: InMemoryCheckInsRepository
 let sut: ValidateCheckInUseCase
 
 // Caso de uso de Check ins
-describe('Check-in Use Case', () => {
+describe('Validate Use Case', () => {
   beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     sut = new ValidateCheckInUseCase(checkInsRepository)
